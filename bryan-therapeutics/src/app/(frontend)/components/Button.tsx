@@ -65,7 +65,7 @@ const Button: React.FC<ButtonProps> = ({
       className={combinedClasses}
       onClick={onClick}
       disabled={disabled}
-      style={{ fontFamily: '"Instrument Sans", sans-serif' }}
+      style={{ fontFamily: '"Instrument Sans", sans-serif', borderRadius: 4 }}
     >
       {children}
       {renderIcon()}

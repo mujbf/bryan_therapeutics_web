@@ -1,5 +1,4 @@
 'use client'
-
 import React, { useState } from 'react'
 import type { Header as HeaderType } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
@@ -21,7 +20,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   const dynamicItems = data?.navItems || []
 
   return (
-    <header className="w-full px-4 pt-6">
+    <header className="w-full pt-6">
       <nav className="mx-auto max-w-7xl bg-white/60 backdrop-blur-sm rounded-2xl shadow-md py-4 px-6 flex items-center justify-between relative">
         {/* Logo */}
         <Link href="/" className="flex items-center">
@@ -43,19 +42,28 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
             <Link
               key={i}
               href={item.href}
-              className="p-2 text-base md:text-xl font-normal tracking-tight text-[#1A1A1A] opacity-70 hover:opacity-100"
+              className="p-2 text-base md:text-xl font-normal tracking-tight text-[#1A1A1A] opacity-70 hover:opacity-100 relative group"
               style={{ fontFamily: '"Instrument Sans", sans-serif' }}
             >
               {item.label}
+              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-[#1A1A1A] rounded-full scale-0 group-hover:scale-100 transition-transform duration-300 ease-in-out"></div>
             </Link>
           ))}
           {dynamicItems.map((item, i) => (
-            <CMSLink key={`cms-${i}`} {...item.link} appearance="link" />
+            <div className="relative group">
+              <CMSLink
+                key={`cms-${i}`}
+                {...item.link}
+                appearance="link"
+                className="opacity-70 hover:opacity-100"
+              />
+              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-[#1A1A1A] rounded-full scale-0 group-hover:scale-100 transition-transform duration-300 ease-in-out"></div>
+            </div>
           ))}
           <Link href="/contact">
             <Button
               variant="button2"
-              className="text-[#E00047] hover:border-1 hover:border-[#E00047] rounded-lg md:text-xl"
+              className="text-[#E00047] hover:border-1 hover:border-[#E00047] rounded-lg md:text-xl nav-btn"
             >
               Contact Us
             </Button>
@@ -75,7 +83,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                 <CMSLink {...item.link} appearance="link" />
               </div>
             ))}
-            <Link href="/contact" className="block py-2 text-[#E00047] font-medium">
+            <Link href="/contact" className="block py-2 ">
               Contact Us
             </Link>
           </div>

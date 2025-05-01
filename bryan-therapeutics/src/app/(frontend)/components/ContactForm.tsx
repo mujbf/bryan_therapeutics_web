@@ -104,7 +104,7 @@ const ContactForm = ({ formId }: { formId: string }) => {
                 variant="button3"
                 bgColor="bg-[#E00047]"
                 color="text-white"
-                className="w-fit"
+                className="w-fit hover:bg-[#FF3D7A]"
                 onClick={(_e) => {
                   formRef.current?.dispatchEvent(
                     new Event('submit', { cancelable: true, bubbles: true }),
@@ -157,8 +157,8 @@ const ContactForm = ({ formId }: { formId: string }) => {
 
               {/* Address */}
               <div className="flex items-start gap-3 md:gap-4">
-                <div className="px-2 rounded-full flex-shrink-0 mt-1">
-                  <Image src="/icons/location-icon.svg" alt="Address" width={24} height={24} />
+                <div className="px-2 rounded-full flex-shrink-0 ">
+                  <Image src="/icons/location-icon.svg" alt="Address" width={16} height={16} />
                 </div>
                 <Text
                   variant="body3"

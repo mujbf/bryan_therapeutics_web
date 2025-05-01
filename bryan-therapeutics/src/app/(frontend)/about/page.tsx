@@ -142,7 +142,7 @@ export default function AboutPage() {
 
       {/* CTA */}
       <div className="bg-[#D9EBFF]">
-        <div className="container max-w-7xl mx-auto px-4 py-8 md:py-30  flex flex-col gap-6 md:gap-10 items-center">
+        <div className="container max-w-7xl mx-auto px-4 py-8 md:py-40 flex flex-col gap-6 md:gap-10 items-center">
           <Text variant="h3" color="text-[#2E4EA1]" align="center">
             Business development and partnerships
           </Text>

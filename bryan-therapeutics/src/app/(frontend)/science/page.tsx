@@ -1,5 +1,6 @@
 import Text from '../components/TextComponent'
 import Image from 'next/image'
+import Pipeline from '../components/Pipeline'
 
 export default function SciencePage() {
   return (
@@ -40,6 +41,7 @@ export default function SciencePage() {
           ))}
         </div>
       </div>
+      <Pipeline />
     </>
   )
 }

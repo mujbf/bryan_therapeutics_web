@@ -20,6 +20,15 @@
     "wdth" 100;
 }
 
+.nav-btn{
+  color: #E00047 !important;
+  border: 1px solid transparent;
+}
+
+.nav-btn:hover {
+  border-color: #E00047 !important;
+}
+
 
 /* @layer base {
   h1,
