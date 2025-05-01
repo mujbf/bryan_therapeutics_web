@@ -50,13 +50,8 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
             </Link>
           ))}
           {dynamicItems.map((item, i) => (
-            <div className="relative group">
-              <CMSLink
-                key={`cms-${i}`}
-                {...item.link}
-                appearance="link"
-                className="opacity-70 hover:opacity-100"
-              />
+            <div key={`cms-${i}`} className="relative group">
+              <CMSLink {...item.link} appearance="link" className="opacity-70 hover:opacity-100" />
               <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-[#1A1A1A] rounded-full scale-0 group-hover:scale-100 transition-transform duration-300 ease-in-out"></div>
             </div>
           ))}
@@ -92,5 +87,3 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
     </header>
   )
 }
-
-export default HeaderNav
