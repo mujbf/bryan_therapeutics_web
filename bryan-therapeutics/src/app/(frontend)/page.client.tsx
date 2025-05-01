@@ -177,7 +177,7 @@ export default function HomePage({ recentPosts = [] }: HomePageProps) {
                 around the world.
               </Text>
               <Button variant="button1" color="text-white/70 hover:text-white/100">
-                See how far we've come
+                See how far we&apos;ve come
               </Button>
             </div>
 

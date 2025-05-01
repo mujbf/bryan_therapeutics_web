@@ -58,7 +58,7 @@ export default function AboutPage() {
             drugs that produce and restore nitric oxide in the human body. We believe in a future
             where safe and effective therapies that get to the root cause of disease will eliminate
             human disease and suffering. Our commitment to advancing the understanding of nitric
-            oxide's role in cardiovascular health and chronic diseases is unwavering. With the
+            oxide&apos;s role in cardiovascular health and chronic diseases is unwavering. With the
             visionary leadership of Dr. Nathan Bryan, we aim to lead the way in nitric oxide
             research and its applications in human therapeutics.
           </Text>
@@ -121,10 +121,13 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-16 w-full">
           {teamMembers.map((member, index) => (
             <div key={index} className="flex flex-col items-center text-center gap-4">
-              <img
+              <Image
                 src={member.image}
                 alt={member.name}
-                className="w-[220px] h-[220px] rounded-full object-cover mb-4"
+                width={220}
+                height={220}
+                className="rounded-full object-cover mb-4"
+                priority={true}
               />
               <Text variant="h4" color="text-[#6BB0FF]" align="center">
                 {member.name}
