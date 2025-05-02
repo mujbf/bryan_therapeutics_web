@@ -1,6 +1,10 @@
+'use client'
+import React, { useEffect, useState } from 'react'
 import Text from './TextComponent'
 
+// Define TypeScript interface for clinical trial data
 interface ClinicalTrialProps {
+  id: string
   treatment: string
   trial: string
   histology: string
@@ -9,6 +13,7 @@ interface ClinicalTrialProps {
   status: string
 }
 
+// Row component for each clinical trial
 const ClinicalTrialRow: React.FC<ClinicalTrialProps> = ({
   treatment,
   trial,
@@ -53,36 +58,40 @@ const ClinicalTrialRow: React.FC<ClinicalTrialProps> = ({
   )
 }
 
+// Table component to display clinical trials
 const ClinicalTrialsTable: React.FC = () => {
-  const trials: ClinicalTrialProps[] = [
-    {
-      treatment: 'Nitric Oxide',
-      trial: 'FDA 0001',
-      histology:
-        'EGFR Mutant Positive Second-line Advanced or Metastatic Who Have Progressed Following EGFR-TKI',
-      combination: 'Combination: ivonescimab + chemotherapy vs. placebo + chemotherapy',
-      region: 'United States',
-      status: 'Phase 2',
-    },
-    {
-      treatment: 'Nitric Oxide',
-      trial: 'FDA 0001',
-      histology:
-        'EGFR Mutant Positive Second-line Advanced or Metastatic Who Have Progressed Following EGFR-TKI',
-      combination: 'Combination: ivonescimab + chemotherapy vs. placebo + chemotherapy',
-      region: 'United States',
-      status: 'Phase 2',
-    },
-    {
-      treatment: 'Nitric Oxide',
-      trial: 'FDA 0001',
-      histology:
-        'EGFR Mutant Positive Second-line Advanced or Metastatic Who Have Progressed Following EGFR-TKI',
-      combination: 'Combination: ivonescimab + chemotherapy vs. placebo + chemotherapy',
-      region: 'United States',
-      status: 'Phase 2',
-    },
-  ]
+  const [trials, setTrials] = useState<ClinicalTrialProps[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    // Fetch clinical trials from Payload API
+    const fetchTrials = async () => {
+      try {
+        const response = await fetch('/api/clinical-trials?limit=100')
+        if (!response.ok) {
+          throw new Error('Failed to fetch clinical trials')
+        }
+        const data = await response.json()
+        setTrials(data.docs)
+      } catch (err) {
+        console.error('Error fetching clinical trials:', err)
+        setError('Failed to load clinical trials data')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchTrials()
+  }, [])
+
+  if (loading) {
+    return <div className="p-8 text-center">Loading clinical trials data...</div>
+  }
+
+  if (error) {
+    return <div className="p-8 text-center text-red-500">{error}</div>
+  }
 
   return (
     <div className="overflow-x-auto">
@@ -117,15 +126,22 @@ const ClinicalTrialsTable: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {trials.map((trial, index) => (
-            <ClinicalTrialRow key={index} {...trial} />
-          ))}
+          {trials.length > 0 ? (
+            trials.map((trial) => <ClinicalTrialRow key={trial.id} {...trial} />)
+          ) : (
+            <tr>
+              <td colSpan={5} className="py-8 text-center">
+                No clinical trials found.
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>
   )
 }
 
+// Main Pipeline component
 const Pipeline: React.FC = () => {
   return (
     <>
