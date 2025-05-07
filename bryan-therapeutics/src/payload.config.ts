@@ -1,4 +1,4 @@
-// storage-adapter-import-placeholder
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 
 import sharp from 'sharp' // sharp-import
@@ -17,6 +17,8 @@ import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
 import ClinicalTrials from './collections/ClinicalTrials'
+
+
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -70,6 +72,19 @@ export default buildConfig({
   plugins: [
     ...plugins,
     // storage-adapter-placeholder
+    vercelBlobStorage({
+      enabled: true, // Optional, defaults to true
+      // Specify which collections should use Vercel Blob
+      collections: {
+        media: true,
+        // 'media-with-prefix': {
+        //   prefix: 'my-prefix',
+        // },
+      },
+      // Token provided by Vercel once Blob storage is added to your Vercel project
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+      clientUploads: true,
+    }),
   ],
   secret: process.env.PAYLOAD_SECRET,
   sharp,
