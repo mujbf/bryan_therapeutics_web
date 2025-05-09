@@ -8,6 +8,8 @@ import ContactForm from './components/ContactForm'
 import Link from 'next/link'
 import Image from 'next/image'
 
+import NavigationButton from './components/NavigationButton'
+
 interface CarouselItemData {
   id: number
   title: string
@@ -176,9 +178,13 @@ export default function HomePage({ recentPosts = [] }: HomePageProps) {
                 effective use, so they can be used to deliver life changing outcomes to people
                 around the world.
               </Text>
-              <Button variant="button1" color="text-white/70 hover:text-white/100">
+              <NavigationButton
+                href="/science"
+                variant="button1"
+                color="text-white/70 hover:text-white/100"
+              >
                 See how far we&apos;ve come
-              </Button>
+              </NavigationButton>
             </div>
 
             {/* Image positioned at bottom right with animation */}
@@ -227,9 +233,9 @@ export default function HomePage({ recentPosts = [] }: HomePageProps) {
                   believe in a future where safe and effective therapies that get to the root cause
                   of disease will eliminate human disease and suffering.
                 </Text>
-                <Button variant="button1" color="text-[#FFFFFF]">
+                <NavigationButton href="/about" variant="button1" color="text-[#FFFFFF]">
                   What drives us
-                </Button>
+                </NavigationButton>
               </div>
               <div className="flex flex-col md:flex-row gap-4 md:gap-10">
                 <div className="w-full md:w-1/2 flex flex-col gap-2 md:gap-4">
@@ -271,9 +277,9 @@ export default function HomePage({ recentPosts = [] }: HomePageProps) {
               bringing various Nitric Oxide-based treatments to market, with each at various stages
               of regulatory approval.
             </Text>
-            <Button variant="button1" color="text-[#FFFFFF]">
+            <NavigationButton href="/science" variant="button1" color="text-[#FFFFFF]">
               What drives us
-            </Button>
+            </NavigationButton>
           </div>
         </div>
         <div className="flex justify-end mr-8 md:mr-20 mt-0 md:mt-[-8%] ">
@@ -299,9 +305,14 @@ export default function HomePage({ recentPosts = [] }: HomePageProps) {
             the media.
           </Text>
           <Link href="/posts" className="inline-flex items-center">
-            <Button variant="button1" color="text-[#535353]" className="mb-6 md:mb-16">
+            <NavigationButton
+              href="/posts"
+              variant="button1"
+              color="text-[#535353]"
+              className="mb-6 md:mb-16"
+            >
               Browse
-            </Button>
+            </NavigationButton>
           </Link>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
@@ -334,9 +345,14 @@ export default function HomePage({ recentPosts = [] }: HomePageProps) {
           >
             Financials, earnings updates, and more.
           </Text>
-          <Button variant="button1" color="text-[#535353]" className="mt-2 sm:mt-0">
+          <NavigationButton
+            href="/about"
+            variant="button1"
+            color="text-[#535353]"
+            className="mt-2 sm:mt-0"
+          >
             More
-          </Button>
+          </NavigationButton>
         </div>
 
         <div className="w-full relative ">
